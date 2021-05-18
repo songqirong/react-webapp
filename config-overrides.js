@@ -15,7 +15,7 @@ const devServerConfig = () => (config) => {
     ...config,
     proxy: {
       "/api": {
-        target: "111",
+        target: "http://localhost:9120",
         changeOrigin: true,
         secure: false,
       },
@@ -33,6 +33,7 @@ module.exports = {
       ["@"]: resolve(__dirname, "src"),
       ["src"]: resolve(__dirname, "src"),
       ["@components"]: resolve(__dirname, "src/components"),
+      ["@redux"]: resolve(__dirname, "src/redux"),
     }),
     addCustomize()
   ),

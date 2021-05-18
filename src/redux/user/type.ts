@@ -1,4 +1,6 @@
-type IInitalStateType = {
+export type IInitalStateType = {
   userInfo: Record<string, unknown>;
 };
-export type { IInitalStateType };
+export const GETUSERINFO = "get_user_info";
+export const REGIST = "regist";
+export const LOGIN = "login";

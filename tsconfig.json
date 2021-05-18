@@ -21,7 +21,15 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+  "files": [
+    "./js_transition.d.ts"
+  ],
   "include": [
-    "src"
+    "./src/**/*",
+    "./server/**/*"
+  ],
+  "exclude": [
+    "build",
+    "node_modules"
   ]
 }

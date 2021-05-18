@@ -1,12 +1,12 @@
 import loadable from "react-loadable";
-import { LoadingComponentFn } from "@components/Loading";
+import { LoadingComponentFn } from "@/components/loading";
 const _loadable = (fn: () => Promise<any>) =>
   loadable({
     loader: fn,
     loading: LoadingComponentFn,
     delay: 200,
   });
-const RegisterComponent = _loadable(() => import("./register"));
+const RegisterComponent = _loadable(() => import("./register-or-login"));
 const HomeComponent = _loadable(() => import("./home"));
 const TestComponent = _loadable(() => import("./test"));
 const routes = [

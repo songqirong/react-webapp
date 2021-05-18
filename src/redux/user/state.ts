@@ -1,5 +1,4 @@
 import { IInitalStateType } from "./type";
-const initalState: IInitalStateType = {
+export const initalState: IInitalStateType = {
   userInfo: {},
 };
-export { initalState };

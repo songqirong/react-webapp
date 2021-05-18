@@ -3,8 +3,8 @@ import "./index.scss";
 const Home: React.FC = () => {
   const [phone, setPhone] = useState<string | undefined>(undefined);
   useEffect(() => {
-    setPhone("15727531836");
-  });
+    setPhone("15727531813211");
+  }, [phone]);
   return (
     <section className="home-container">
       <div>

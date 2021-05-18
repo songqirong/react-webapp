@@ -27,7 +27,7 @@ function App() {
                       RouteComponentProps<any, StaticContext, unknown>
                     >
                   | undefined;
-                id: React.Key | null | undefined;
+                id: React.Key | undefined;
               }) => (
                 <Route
                   path={item.path}

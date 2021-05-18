@@ -1,0 +1,38 @@
+.input-container{
+  height: 100px;
+  font-size: 30px;
+  line-height: 100px;
+  border-bottom: 2px solid #f7f7f7;
+  display: flex;
+  &>div{
+    flex: 2;
+    text-align: right;
+  }
+  &>input{
+    flex: 5;
+    border: none;
+  }
+}
+.checkbox-container{
+  height: 100px;
+  font-size: 30px;
+  line-height: 100px;
+  border-bottom: 2px solid #f7f7f7;
+  display: flex;
+  &>.name{
+    flex: 2;
+    text-align: right;
+  }
+  &>.options{
+    flex: 5;
+    display: flex;
+    justify-content: space-around;
+    &>div{
+      input{
+        position: relative;
+        top: 4px;
+        margin-right: 6px;
+      }
+    }
+  }
+}
