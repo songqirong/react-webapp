@@ -1,0 +1,30 @@
+.avatar-container{
+  border: 1px solid #f7f7f7;
+  .name{
+    color: #888;
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .img-box{
+    padding: 12.5px;
+    .img{
+      width: 75px;
+      height: 75px;
+      margin: 30px auto 10px;
+    }
+  }
+  .sub-title{
+    margin: 20px 0 20px 20px;
+    font-size: 30px;
+    display: flex;
+    span{
+      line-height: 75px;
+      height: 75px;
+    }
+    img{
+      margin-left: 10px;
+      width: 75px;
+      height: 75px;
+    }
+  }
+}

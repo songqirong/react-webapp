@@ -17,17 +17,38 @@ export function fetchLogin(data: any) {
   });
 }
 
-// 获取用户详情 {}
-export function fetchGetUserInfo(data: any) {
+// 退出登录 {}
+export function fetchLogout(data: any) {
   return axios({
-    url: "/users/getUserInfo",
-    method: "get",
+    url: "/users/logout",
+    method: "POST",
     data,
   });
 }
 
-export default {
-  fetchRegist,
-  fetchLogin,
-  fetchGetUserInfo,
-};
+// 获取用户详情 {}
+export function fetchGetUserInfo(params: any) {
+  return axios({
+    url: "/users/getUserInfo",
+    method: "get",
+    params,
+  });
+}
+
+// 获取默认选择头像 {}
+export function fetchGetUserAvatar(params: any) {
+  return axios({
+    url: "/avatars/getAllAvatar",
+    method: "get",
+    params,
+  });
+}
+
+// 获取默认选择头像 {}
+export function fetchCompleteMessage(data: any) {
+  return axios({
+    url: "/users/updateUserInfo",
+    method: "put",
+    data,
+  });
+}

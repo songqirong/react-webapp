@@ -17,25 +17,20 @@ instance.interceptors.request.use(
 );
 instance.interceptors.response.use(
   function (response) {
-    if (response.status === 200) {
+    if (response.status >= 200 && response.status < 400) {
       return response.data;
-    } else if (
-      response.status === 401 &&
-      response.data.msg === "token invalid"
-    ) {
-      localStorage.removeItem("token");
-      location.href = "/login";
-      return;
-      // if (response.data && response.data.success) {
-      //   return response.data.data;
-      // } else {
-      //   alert("网络异常，请稍后再试");
-      // }
     } else {
       alert("网络异常，请稍后再试");
     }
   },
   function (error) {
+    const { response } = error;
+    if (response.status === 401 && response.data.err_code === "TOKEN_INVALID") {
+      location.href = `/register-or-login?from=${encodeURIComponent(
+        location.href
+      )}`;
+      return;
+    }
     return Promise.reject(error);
   }
 );

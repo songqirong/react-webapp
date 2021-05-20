@@ -1,9 +1,13 @@
 import React, { FC } from "react";
 import "./index.scss";
-const NavBarComponent: FC = () => {
+type IProps = {
+  content: string;
+};
+const NavBarComponent: FC<IProps> = (props) => {
+  const { content } = props;
   return (
     <div className="navBar">
-      <span>失联招聘</span>
+      <span>{content}</span>
     </div>
   );
 };

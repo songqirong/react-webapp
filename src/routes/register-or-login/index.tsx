@@ -1,15 +1,11 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { List, WingBlank, WhiteSpace, Button } from "antd-mobile";
 import { NavBar, InputItem, Message } from "@components/index";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { check_phone, fun_to_promise } from "@/utils";
-import {
-  fetchReduxRegist,
-  fetchReduxLogin,
-  fetchReduxUserInfo,
-} from "@/redux/user/actions";
-import { IStoreType } from "@redux/type";
+import { fetchGetUserInfo } from "@/utils/api";
+import { check_phone, fun_to_promise, qs_parse } from "@/utils";
+import { fetchReduxRegist, fetchReduxLogin } from "@/redux/user/actions";
 import "./index.scss";
 const LOGO = require("@/assets/logo.jpeg").default;
 const Regist: React.FC<any> = (props) => {
@@ -18,7 +14,7 @@ const Regist: React.FC<any> = (props) => {
   const USERNAME = useRef<HTMLInputElement>();
   const PASSWORD = useRef<HTMLInputElement>();
   const PASSWORD2 = useRef<HTMLInputElement>();
-  const { fetchRegist, fetchLogin, fetchUserInfo, user } = props;
+  const { fetchRegist, fetchLogin } = props;
   const isLogin = submitType === "login";
   const data = [
     { value: "SEEKERS", label: "大神" },
@@ -27,7 +23,6 @@ const Regist: React.FC<any> = (props) => {
   const onChange = (value: string) => {
     setUserType(value);
   };
-  console.log(user, "user");
   const submit_to_regist = () => {
     const username = USERNAME.current?.value;
     const password = PASSWORD.current?.value;
@@ -49,9 +44,25 @@ const Regist: React.FC<any> = (props) => {
       if (isLogin) {
         fun_to_promise({ phone_number: username, password }, fetchLogin).then(
           (res: any) => {
-            Message.show(res.msg, "success");
             (PASSWORD.current as any).value = "";
             (USERNAME.current as any).value = "";
+            if (res.err_code === 0) {
+              Message.show(res.msg, "success");
+              // 登录成功后获取用户信息，看是否需要跳转到完善用户信息页面
+              fetchGetUserInfo({}).then((res: any) => {
+                if (res.err_code === 0) {
+                  const { from } = qs_parse();
+                  const redirect_url = res.userInfo?.user_avatar
+                    ? from
+                    : "/complete-info";
+                  setTimeout(() => {
+                    location.href = redirect_url;
+                  }, 1000);
+                }
+              });
+            } else {
+              Message.show(res.err_msg, "error");
+            }
           }
         );
       } else {
@@ -59,27 +70,26 @@ const Regist: React.FC<any> = (props) => {
           { phone_number: username, password2, password, user_type: userType },
           fetchRegist
         ).then((res: any) => {
-          Message.show(res.msg, "success");
           (PASSWORD.current as any).value = "";
           (PASSWORD2.current as any).value = "";
           (USERNAME.current as any).value = "";
-          setUserType("SEEKERS");
+          if (res.err_code === 0) {
+            Message.show(res.msg, "success");
+            change_submit_type("login");
+          } else {
+            Message.show(res.err_msg, "error");
+          }
         });
       }
     }
   };
-  useEffect(() => {
-    fun_to_promise({}, fetchUserInfo).then((res) => {
-      console.log(res, "res");
-    });
-  }, []);
   // 转换登录与注册
   const change_submit_type = (type: "login" | "regist") => {
     setSubmitType(type);
   };
   return (
     <section className="register-container">
-      <NavBar />
+      <NavBar content="失联招聘" />
       <div className="img">
         <img src={LOGO} alt="" />
       </div>
@@ -120,7 +130,6 @@ const Regist: React.FC<any> = (props) => {
         >
           {isLogin ? "去注册" : "已有账户"}
         </Button>
-        <div className="msg">{user.userInfo.user_name}</div>
       </WingBlank>
     </section>
   );
@@ -130,15 +139,11 @@ const MapDispatchToProps = (dispatch: any) =>
     {
       fetchLogin: fetchReduxLogin,
       fetchRegist: fetchReduxRegist,
-      fetchUserInfo: fetchReduxUserInfo,
     },
     dispatch
   );
 
-const MapStateToProps = (store: IStoreType) => {
-  const { user } = store;
-  return {
-    user,
-  };
+const MapStateToProps = () => {
+  return {};
 };
 export default connect(MapStateToProps, MapDispatchToProps)(Regist);

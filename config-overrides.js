@@ -34,6 +34,8 @@ module.exports = {
       ["src"]: resolve(__dirname, "src"),
       ["@components"]: resolve(__dirname, "src/components"),
       ["@redux"]: resolve(__dirname, "src/redux"),
+      ["@api"]: resolve(__dirname, "src/api"),
+      ["@utils"]: resolve(__dirname, "src/utils"),
     }),
     addCustomize()
   ),
