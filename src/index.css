@@ -7,6 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   position: relative;
   height: 100vh;
+  overflow: hidden;
 }
 body>.message{
   position: absolute;
@@ -15,6 +16,13 @@ body>.message{
   width: 718px;
   height: 50px;
   overflow: hidden;
+}
+#root{
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  overflow-y: auto;
+  width: 100%;
 }
 
 code {

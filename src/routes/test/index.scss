@@ -1,5 +1,29 @@
 .register-container{
-  background-color: green;
   font-size: 30px;
   line-height: 60px;
+  background-color: green;
+}
+.bubble
+		{
+			position: absolute;
+			animation-timing-function: linear;
+			animation-name: floating;
+			animation-iteration-count: infinite;
+		}
+
+		@keyframes floating
+		{
+			0%{
+				transform: translateY(0px);
+			}
+			50%{
+				transform: translateY(-5px);
+			}
+			100%{
+				transform: translateY(0px);
+			}
+		}
+.container{
+  position: relative;
+  height: 500px;
 }
