@@ -19,10 +19,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react"
   },
   "files": [
-    "./js_transition.d.ts"
+    "./js_transition.d.ts",
+    "./src/type/index.d.ts"
   ],
   "include": [
     "./src/**/*",

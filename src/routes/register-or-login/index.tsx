@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
-import { List, WingBlank, WhiteSpace, Button } from "antd-mobile";
+import { List, WingBlank, WhiteSpace, Button, Toast } from "antd-mobile";
 import { NavBar, InputItem, Message } from "@components/index";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchGetUserInfo } from "@/utils/api";
+import { fetchGetUserInfo } from "@api/user";
 import { check_phone, fun_to_promise, qs_parse } from "@/utils";
 import { fetchReduxRegist, fetchReduxLogin } from "@/redux/user/actions";
 import "./index.scss";
@@ -40,29 +40,24 @@ const Regist: React.FC<any> = (props) => {
       (PASSWORD.current as any).value = "";
       (PASSWORD2.current as any).value = "";
     } else {
+      const content = isLogin ? "登录中..." : "注册中...";
+      Toast.loading(content, 3, () => {}, true);
       // 发送注册或登录请求
       if (isLogin) {
         fun_to_promise({ phone_number: username, password }, fetchLogin).then(
           (res: any) => {
             (PASSWORD.current as any).value = "";
             (USERNAME.current as any).value = "";
-            if (res.err_code === 0) {
-              Message.show(res.msg, "success");
-              // 登录成功后获取用户信息，看是否需要跳转到完善用户信息页面
-              fetchGetUserInfo({}).then((res: any) => {
-                if (res.err_code === 0) {
-                  const { from } = qs_parse();
-                  const redirect_url = res.userInfo?.user_avatar
-                    ? from
-                    : "/complete-info";
-                  setTimeout(() => {
-                    location.href = redirect_url;
-                  }, 1000);
-                }
+            // 登录成功后获取用户信息，看是否需要跳转到完善用户信息页面
+            fetchGetUserInfo({}).then((res: any) => {
+              Toast.success("登录成功，即将跳转～", 2, () => {
+                const { from } = qs_parse();
+                const redirect_url = res.userInfo.user_avatar
+                  ? from
+                  : '/complete-info';
+                location.href = redirect_url;
               });
-            } else {
-              Message.show(res.err_msg, "error");
-            }
+            });
           }
         );
       } else {
@@ -73,18 +68,18 @@ const Regist: React.FC<any> = (props) => {
           (PASSWORD.current as any).value = "";
           (PASSWORD2.current as any).value = "";
           (USERNAME.current as any).value = "";
-          if (res.err_code === 0) {
-            Message.show(res.msg, "success");
-            change_submit_type("login");
-          } else {
-            Message.show(res.err_msg, "error");
-          }
+          Toast.success("注册成功");
+          Message.show(res.msg, "success");
+          change_submit_type("login");
         });
       }
     }
   };
   // 转换登录与注册
   const change_submit_type = (type: "login" | "regist") => {
+    (PASSWORD.current as any).value = "";
+    if(type === 'login') (PASSWORD2.current as any).value = "";
+    (USERNAME.current as any).value = "";
     setSubmitType(type);
   };
   return (

@@ -1,0 +1,44 @@
+.message-container{
+  height: 100vh;
+  .user-content{
+    background-color: #f7f7f7;
+    height: calc(100vh - 180px);
+    overflow-y: auto;
+    .am-list-body{
+      background-color: white;
+      .chat-me {
+        .am-list-line{
+          .am-list-content{
+            text-align: right;
+          }
+        }
+      }
+      .am-list-item{
+        background-color: transparent !important;
+        .am-list-thumb{
+          &>img{
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+          }
+        }
+        .am-list-line{
+          .am-list-content{
+            line-height: 50px !important;
+            padding: 10px 10px !important;
+            flex: 10;
+          }
+          .am-list-extra{
+            flex: 4;
+            text-align: right;
+            .am-badge-text{
+              padding: 0 5px;
+              height: 30px;
+              line-height: 30px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

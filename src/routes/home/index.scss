@@ -1,6 +1,6 @@
 .home-container{
-  background-color: green;
-  width: 375px;
+  width: 100%;
+  min-height: 100vh;
   &>div{
     font-size: 30px;
     line-height: 50px;

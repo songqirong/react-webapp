@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavBar, InputItem } from "@components/index";
 import { connect } from "react-redux";
-import { fetchCompleteMessage } from "@/utils/api";
+import { fetchCompleteMessage } from "@api/user";
 import { bindActionCreators } from "redux";
 import { fetchReduxUserInfo } from "@/redux/user/actions";
 import { IStoreType } from "@redux/type";
 import AvatarSelect from "./components/avatar-select";
 import { Button, Toast } from "antd-mobile";
 import "./index.scss";
+import { qs_parse } from "@/utils";
 const CompleteInfo: React.FC<any> = (props) => {
   const [user_avatar, set_user_avatar] = useState<string>();
   const RECRUITMENTJOB = useRef<HTMLInputElement>();
@@ -82,8 +83,13 @@ const CompleteInfo: React.FC<any> = (props) => {
           recruitment_request,
         }
       : { user_avatar, apply_job, personal_introduction };
-    fetchCompleteMessage(data).then((res) => {
-      console.log(res, "res");
+    fetchCompleteMessage(data).then((res: any) => {
+      const { from } = qs_parse();
+      if(res.err_code === 0){
+        Toast.success(res.msg, 2, () => {
+          location.href = from || '/'
+        })
+      }
     });
   };
   return (

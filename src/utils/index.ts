@@ -2,8 +2,6 @@ import cookie from "js-cookie";
 const BUBBLE = require("@/assets/bubble.png").default;
 export function qs_parse(url: string = location.search) {
   url = url.replace(/#.*/, "");
-  url.slice(0, 1);
-  console.log(url, "url");
   const obj: Record<string, any> = {};
   url.split("&").forEach((item) => {
     const arr = item.split("=");
@@ -95,7 +93,7 @@ export class MyCanvas {
     });
   }
   public print(ele: HTMLImageElement) {
-    ele.src = this.canvas?.toDataURL();
+    ele.src = this.canvas?.toDataURL() || '';
   }
   public download() {
     // 文件流式下载

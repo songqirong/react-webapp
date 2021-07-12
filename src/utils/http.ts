@@ -1,4 +1,6 @@
+import { Toast } from "antd-mobile";
 import axios from "axios";
+import { socketObj } from '@utils/socket';
 const baseURL = "http://localhost:3030/api";
 const instance = axios.create({
   baseURL,
@@ -17,7 +19,7 @@ instance.interceptors.request.use(
 );
 instance.interceptors.response.use(
   function (response) {
-    if (response.status >= 200 && response.status < 400) {
+    if ( /^2/.test(response.status.toString())) {
       return response.data;
     } else {
       alert("网络异常，请稍后再试");
@@ -25,13 +27,15 @@ instance.interceptors.response.use(
   },
   function (error) {
     const { response } = error;
-    if (response.status === 401 && response.data.err_code === "TOKEN_INVALID") {
+    if (response.status === 401) {
+      socketObj.close();
       location.href = `/register-or-login?from=${encodeURIComponent(
         location.href
       )}`;
       return;
     }
-    return Promise.reject(error);
+    Toast.fail(response.data.err_msg);
+    return Promise.reject(response);
   }
 );
 export default instance;

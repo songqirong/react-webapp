@@ -21,32 +21,32 @@ export default class Test extends PureComponent<any, any> {
   }
   componentDidMount() {
     // this.get_canvas();
-    this.mycanvas = new MyCanvas({
-      bgWidth: 500,
-      bgHeight: 600,
-      canvas: this.canvas,
-    });
-    this.mycanvas
-      .run([
-        {
-          src: `https://n.sinaimg.cn/ent/transform/460/w630h630/20180824/Zaob-hicsiaw3749625.jpg?timestamp=${Date.now()}`,
-          x: 0,
-          y: 0,
-          width: 250,
-          height: 600,
-        },
-        {
-          src: `https://n.sinaimg.cn/ent/transform/460/w630h630/20180824/Zaob-hicsiaw3749625.jpg?timestamp=${Date.now()}`,
-          x: 250,
-          y: 0,
-          width: 250,
-          height: 600,
-        },
-      ])
-      .then(() => {
-        console.log("111");
-        this.mycanvas?.print(this.xtx);
-      });
+    // this.mycanvas = new MyCanvas({
+    //   bgWidth: 500,
+    //   bgHeight: 600,
+    //   canvas: this.canvas,
+    // });
+    // this.mycanvas
+    //   .run([
+    //     {
+    //       src: `https://n.sinaimg.cn/ent/transform/460/w630h630/20180824/Zaob-hicsiaw3749625.jpg?timestamp=${Date.now()}`,
+    //       x: 0,
+    //       y: 0,
+    //       width: 250,
+    //       height: 600,
+    //     },
+    //     {
+    //       src: `https://n.sinaimg.cn/ent/transform/460/w630h630/20180824/Zaob-hicsiaw3749625.jpg?timestamp=${Date.now()}`,
+    //       x: 250,
+    //       y: 0,
+    //       width: 250,
+    //       height: 600,
+    //     },
+    //   ])
+    //   .then(() => {
+    //     console.log("111");
+    //     this.mycanvas?.print(this.xtx);
+    //   });
   }
   // 将图片绘制到canvas
   get_canvas = () => {
@@ -111,25 +111,26 @@ export default class Test extends PureComponent<any, any> {
     const { phone } = this.state;
     return (
       <section className="register-container">
-        <div className="canvas">
+         <div className="canvas">
           <span>{phone}</span>
           <Button onClick={this.downImage}>呵呵</Button>
         </div>
-        <canvas ref={(node: any) => (this.canvas = node)}></canvas>
-        {/* <div
+        {/* <canvas ref={(node: any) => (this.canvas = node)}></canvas> */}
+         <div
           ref={(node: any) => (this.divEle = node)}
           className="container"
-        ></div> */}
-        {/* <div className="wrap">
+        ></div> 
+        <div className="wrap">
           <input type="checkbox" id="input" />
           <div className="text">
             <label className="btn" htmlFor="input"></label>
             浮动元素是如何定位的
             正如我们前面提到的那样，当一个元素浮动之后当一个元素浮动之后，它会被移出正常的文档流，然后向左或者向右平移，一直平移直到碰到了所处的容器的边框，或者碰到另外一个浮动的元素。
           </div>
-        </div> */}
-        <img ref={(node: any) => (this.xtx = node)} crossOrigin="anonymous" />
+        </div>
+       {/* <img ref={(node: any) => (this.xtx = node)} crossOrigin="anonymous" /> */}
       </section>
+      
     );
   }
 }

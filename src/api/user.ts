@@ -1,4 +1,4 @@
-import axios from "./fetch";
+import axios from "@/utils/http";
 // 注册 {username, password, password2 }
 export function fetchRegist(data: any) {
   return axios({
@@ -44,11 +44,20 @@ export function fetchGetUserAvatar(params: any) {
   });
 }
 
-// 获取默认选择头像 {}
+// 完善用户信息 
 export function fetchCompleteMessage(data: any) {
   return axios({
-    url: "/users/updateUserInfo",
+    url: "/users/insertUserDeatilInfo",
     method: "put",
     data,
+  });
+}
+
+// 获取用户所有的补充信息 {}
+export function fetchGetUserCompleteInfo(params: any) {
+  return axios({
+    url: "/users/getDetailInfo",
+    method: "get",
+    params,
   });
 }

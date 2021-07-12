@@ -1,6 +1,6 @@
 import { Grid } from "antd-mobile";
 import React, { useEffect, useState } from "react";
-import { fetchGetUserAvatar } from "@/utils/api";
+import { fetchGetUserAvatar } from "@api/user";
 import "./index.scss";
 type IData = {
   create_time: number;

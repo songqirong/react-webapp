@@ -1,0 +1,35 @@
+@mixin tabname {
+  width: 44px;
+  height: 44px;
+  background-position: center center;
+  background-size: 42px 42px;
+  background-repeat: no-repeat;
+}
+.tab-container{
+  position: fixed;
+  height: 100px;
+  width: 100%;
+  bottom: 0;
+  .common{
+    @include tabname();
+  }
+  .am-tabs-tab-bar-wrap{
+    height: 100px;
+  }
+  .am-tab-bar-bar{
+    height: 100px;
+  }
+  .am-badge-text,.am-badge-dot{
+    left: 44px !important;
+    margin-top: 4px !important;
+    box-sizing: content-box;
+  }
+  .am-badge-text{
+    padding: 5px 8px;
+  }
+  .am-badge-dot{
+    height: 8px;
+    width: 8px;
+    padding: 5px;
+  }
+}
