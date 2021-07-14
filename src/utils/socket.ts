@@ -25,7 +25,7 @@ class Socket{
             const new_message_list = clone_deep(message_list)
             const { to_user_id, from_user_id } = message_obj;
             const chat_id = isMe ? to_user_id : from_user_id;
-            const arr = new_message_list[chat_id] ? [message_obj, ...new_message_list] : [ message_obj ];
+            const arr = new_message_list[chat_id] ? [message_obj, ...new_message_list[chat_id]] : [ message_obj ];
             // 如果列表里有这个人就先删除后插入，没有就直接插入
             if(!insert){
               const idx = findObjIdxFromArr(message_user_list, { _id: user_obj._id  });
