@@ -116,6 +116,7 @@
     transition-property: bottom;
     transition-duration: .5s;
     transition-timing-function: linear;
+    z-index: 2;
     &.show{
       bottom: 0;
     }

@@ -1,22 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NavBar } from '@components/index';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Grid, List, Icon } from 'antd-mobile';
-import { socketObj } from '@utils/socket';
+import { socketObj, clone_deep, findObjIdxFromArr } from '@utils/socket';
 import { IInitalStateType as userType } from '@/redux/user/type';
 import { IInitalStateType as messageType } from '@/redux/message/type';
 import { withRouter } from 'react-router-dom';
 import { emojipedias } from './contant';
+import { fetchUpdateRead } from '@api/socket';
+import { fetchReduxUpdateUserList } from '@redux/message/actions';
 import cx from 'classnames';
 import './index.scss';
 const emojis = emojipedias.map(item => ({ text: item }))
 const Item = List.Item;
 const Chat: React.FC<any> = (props) => {
-  const { user: { userInfo : { _id, user_avatar, nickname: from_user_nickname } }, message: { message_list} }: { user: userType, message: messageType } = useSelector((store: any) => store);
+  const { user: { userInfo : { _id, user_avatar, nickname: from_user_nickname } }, message: { message_list, message_user_list } }: { user: userType, message: messageType } = useSelector((store: any) => store);
   const { nickname, chat_id, avatar } = props.location.state;
   const iptEle = useRef<any>();
   const conEle = useRef<any>();
   const [show, setShow] =  useState<boolean>(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     conEle.current.scrollTop = conEle.current.scrollHeight - conEle.current.clientHeight;
@@ -24,10 +27,28 @@ const Chat: React.FC<any> = (props) => {
 
   // 排除组件bug, 需要异步派发action
   useEffect(() => {
+    if(!(nickname && chat_id && avatar)){
+      props.history.replace('/message');
+    }
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
     }, 0);
-  }, [])
+  }, []);
+
+  // 更新已读
+  const updateRead = async(cb: () => void) => {
+    const idx = findObjIdxFromArr(message_user_list, { belong_user_id: _id, user_id: chat_id } )
+    console.log(idx, 'idx');
+    if(message_user_list[idx].count > 0){
+      const res: any = await fetchUpdateRead({ chat_id });
+      if(res.err_code === 0){
+        const new_user_list = clone_deep(message_user_list);
+        new_user_list[idx].count = 0;
+        dispatch(fetchReduxUpdateUserList(new_user_list));
+      }
+    }
+    cb();
+  }
 
   // 生成聊天列表
   const generateEle = () => <>{ message_list[chat_id]?.sort((a, b) => a.create_time - b.create_time).map(item => {
@@ -39,7 +60,7 @@ const Chat: React.FC<any> = (props) => {
     if(!iptEle.current.value) return;
     socketObj.send({ from_user_avatar: user_avatar, from_user_id: _id, from_user_nickname, to_user_avatar: avatar, to_user_id: chat_id, to_user_nickname: nickname, content: iptEle.current?.value });
     iptEle.current.value = '';
-    closeShow();
+    closeShow()
   }
 
   const keyEve = (e: any) => {
@@ -66,7 +87,8 @@ const Chat: React.FC<any> = (props) => {
 
   // 返回上一页
   const goBack = () => {
-    props.history.goBack();
+    updateRead(() => {props.history.goBack();});
+    
   }
 
   const emojiEle = <Grid data={emojis} isCarousel onClick={selectEmoji} carouselMaxRow={4} columnNum={8} />

@@ -17,6 +17,7 @@ const My: React.FC = (props: any) => {
       { text: '取消', onPress: () => console.log('cancel') },
       { text: '确认', onPress: () => {
         dispatch(fetchReduxLogout({}));
+        socketObj.close();
         Toast.success('退出成功', 2, () => {
           dispatch(fetchReduxClearList());
           dispatch(fetchReduxClearMessageList());

@@ -9,6 +9,7 @@ import { socketObj } from '@utils/socket';
 import { GETUSERINFO, LOGIN, REGIST, LOGOUT, GETCOMPLETEINFO } from "./type";
 // 获取用户信息
 export const fetchReduxUserInfo = (params: any, fn?: any) => {
+  socketObj.connect();
   return (dispatch: any) => {
     fetchGetUserInfo(params).then((res: any) => {
       if(res.err_code === 0){

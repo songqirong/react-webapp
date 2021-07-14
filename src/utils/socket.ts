@@ -7,7 +7,15 @@ export let socketObj: Socket;
 class Socket{
   public socket;
   constructor(){
-    this.socket = io('ws://localhost:9120');
+    this.socket = io('wss://recruitmentapi.persion.cn');
+  }
+  // 与服务器断开连接
+  public close(){
+    this.socket.close();
+  }
+  // 与服务器建立连接
+  public connect(){
+    this.socket.connect();
   }
   // 发送信息
   public send(payload: sendMsg){
@@ -72,6 +80,7 @@ class Socket{
 export const initSocket = () => {
   if(!socketObj){
     socketObj = new Socket();
+    socketObj.close();
   }
 }
 

@@ -15,7 +15,7 @@ const devServerConfig = () => (config) => {
     ...config,
     proxy: {
       "/api": {
-        target: "http://localhost:9120",
+        target: "http://localhost:8095",
         changeOrigin: true,
         secure: false,
       },
