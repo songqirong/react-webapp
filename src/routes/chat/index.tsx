@@ -30,7 +30,7 @@ const Chat: React.FC<any> = (props) => {
   }, [])
 
   // 生成聊天列表
-  const generateEle = () => <>{ message_list[chat_id]?.map(item => {
+  const generateEle = () => <>{ message_list[chat_id]?.sort((a, b) => a.create_time - b.create_time).map(item => {
     const isMe: boolean = _id === item.from_user_id; // 判断是谁发出的消息
     return <Item key={item._id} wrap multipleLine={true} thumb={isMe ? null : avatar} extra={isMe ? <div className="am-list-thumb"><img src={user_avatar} /></div>  : null} className={ isMe ? 'chat-me' : 'chat-you' } > <div className="arrow_box">{item.content}</div> </Item>
   })} </>

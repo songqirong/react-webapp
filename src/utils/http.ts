@@ -28,7 +28,6 @@ instance.interceptors.response.use(
   function (error) {
     const { response } = error;
     if (response.status === 401) {
-      socketObj.close();
       location.href = `/register-or-login?from=${encodeURIComponent(
         location.href
       )}`;
