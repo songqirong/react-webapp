@@ -16,25 +16,27 @@
       .am-list-item{
         background-color: transparent !important;
         .am-list-thumb{
+          margin-top: 10px;
           &>img{
-            width: 50px;
-            height: 50px;
-            border-radius: 25px;
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
           }
         }
         .am-list-line{
           .am-list-content{
-            line-height: 50px !important;
-            padding: 10px 10px !important;
+            line-height: 60px !important;
+            padding: 20px 20px !important;
             flex: 10;
+            font-size: 30px;
           }
           .am-list-extra{
             flex: 4;
             text-align: right;
             .am-badge-text{
-              padding: 0 5px;
-              height: 30px;
-              line-height: 30px;
+              padding: 0 10px;
+              height: 40px;
+              line-height: 40px;
             }
           }
         }
