@@ -15,9 +15,9 @@ const devServerConfig = () => (config) => {
     ...config,
     proxy: {
       "/api": {
-        target: "http://localhost:8095",
+        target: "https://recruitmentapi.persion.cn",
         changeOrigin: true,
-        secure: false,
+        wss: true,
       },
     },
   };

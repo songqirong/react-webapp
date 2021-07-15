@@ -1,11 +1,11 @@
 import { Toast } from "antd-mobile";
 import axios from "axios";
 import { socketObj } from '@utils/socket';
-const baseURL = "https://recruitmentapi.persion.cn";
+const baseURL = "https://recruitmentapi.persion.cn/api";
 const instance = axios.create({
   baseURL,
   timeout: 7000,
-  headers: { "Access-Control-Max-Age": 3600 },
+  withCredentials: true
 });
 instance.interceptors.request.use(
   function (config) {
