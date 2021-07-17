@@ -61,7 +61,7 @@ const CompleteInfo: React.FC<any> = (props) => {
         return Toast.info("请填写职位薪资");
       } else if (!recruitment_request) {
         return Toast.info("请填写职位要求");
-      } else if(!recruitment_salary.match(/^[1~9][0~9]*$/)){
+      } else if(!recruitment_salary.match(/^[1-9][0-9]*$/)){
         return Toast.info('请输入纯数值的薪资，不包含小数')
       }
     } else {
