@@ -49,14 +49,12 @@ const Regist: React.FC<any> = (props) => {
             (PASSWORD.current as any).value = "";
             (USERNAME.current as any).value = "";
             // 登录成功后获取用户信息，看是否需要跳转到完善用户信息页面
-            fetchGetUserInfo({}).then((res: any) => {
-              Toast.success("登录成功，即将跳转～", 2, () => {
-                const { from } = qs_parse();
-                const redirect_url = res.userInfo.user_avatar
-                  ? from
-                  : '/complete-info';
-                location.href = redirect_url;
-              });
+            Toast.success("登录成功，即将跳转～", 2, () => {
+              const { from } = qs_parse();
+              const redirect_url = res.userInfo.user_avatar
+                ? from
+                : '/complete-info';
+              location.href = redirect_url;
             });
           }
         );

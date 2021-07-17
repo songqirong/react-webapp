@@ -21,28 +21,32 @@ const My: React.FC = (props: any) => {
         Toast.success('退出成功', 2, () => {
           dispatch(fetchReduxClearList());
           dispatch(fetchReduxClearMessageList());
-          props.history.push('/register-or-login')
+          props.history.push('/register-or-login');
         })
       } },
     ])
   }
   const streamlineFun = (str: string) => str.length > 10 ? `${str.slice(0, 9)}...` : str;
+  const jump_page = (pathname: 'update' | 'job-card', type?: string) => {
+    const path =  pathname === 'update' ? `${pathname}?type=${type}&id=${completeInfo.length > 0 ? completeInfo[0]._id : ''}` : pathname
+    props.history.push(path)
+  }
   const generateItem = () => {
     return userInfo.user_type === 'BOSS' ?  
       <>
-      <List.Item arrow="horizontal" multipleLine onClick={() => {}} extra={streamlineFun(completeInfo[0]?.company_name || '无')}>
+      <List.Item arrow="horizontal" multipleLine onClick={() => {jump_page('update', 'company_name')}} extra={streamlineFun(completeInfo[0]?.company_name || '无')}>
         公司名称
       </List.Item>
-      <List.Item arrow="horizontal" multipleLine onClick={() => {}} extra={completeInfo.length}>
+      <List.Item arrow="horizontal" multipleLine onClick={() => {jump_page('job-card')}} extra={completeInfo.length}>
         招聘岗位个数
       </List.Item>
       </>
       : 
       <>
-      <List.Item arrow="horizontal" multipleLine onClick={() => {}} extra={streamlineFun(completeInfo[0]?.apply_job || '无')}>
+      <List.Item arrow="horizontal" multipleLine onClick={() => {jump_page('update', 'apply_job')}} extra={streamlineFun(completeInfo[0]?.apply_job || '无')}>
       求职意向
       </List.Item>
-      <List.Item arrow="horizontal" multipleLine onClick={() => {}} extra={streamlineFun(completeInfo[0]?.personal_introduction || '无')}>
+      <List.Item arrow="horizontal" multipleLine onClick={() => {jump_page('update', 'personal_introduction')}} extra={streamlineFun(completeInfo[0]?.personal_introduction || '无')}>
       个人介绍
       </List.Item>
       </>
@@ -53,7 +57,7 @@ const My: React.FC = (props: any) => {
       <NavBar content="用户中心" />
       <div className="my-content">
         <Result
-          img={<img src={userInfo.user_avatar || 'https://static.persion.cn/images/others/dog.webp'} className="avatar" />}
+          img={<img src={userInfo.user_avatar || 'https://static.persion.cn/images/others/dog.webp'} className="avatar" onClick={() => {jump_page('update', 'avatar')}} />}
           title={userInfo.user_name}
           message={userInfo.nickname}
         />

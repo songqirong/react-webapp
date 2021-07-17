@@ -1,4 +1,4 @@
-import { GETLIST, CLEARLIST, UPDATEISNEW } from "./type";
+import { GETLIST, CLEARLIST, UPDATEISNEW, UPDATESCROLLTOP } from "./type";
 // 获取用户信息
 export const fetchReduxList = (payload: any) => {
   return (dispatch: any) => {
@@ -23,6 +23,16 @@ export const fetchReduxClearList = () => {
   return (dispatch: any) => {
     dispatch({
       type: CLEARLIST,
+    });
+  };
+};
+
+// 存储首页滚动的距离
+export const fetchReduxScrollTop = (payload: any) => {
+  return (dispatch: any) => {
+    dispatch({
+      type: UPDATESCROLLTOP,
+      payload,
     });
   };
 };

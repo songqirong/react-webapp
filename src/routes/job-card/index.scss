@@ -1,0 +1,55 @@
+.jobcard-container{
+  min-height: 100vh;
+  .content{
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    .item{
+      height: 320px;
+      background-color: white;
+      border-radius: 30px;
+      overflow: hidden;
+      box-sizing: border-box;
+      padding: 30px 50px 0;
+      margin-bottom: 20px;
+      .txt-item{
+        font-size: 30px;
+        margin: 20px 0;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        &>span{
+          font-weight: bold;
+        }
+      }
+    }
+    .btn{
+      text-align: right;
+      font-size: 24px;
+      .editor{
+        color: rgb(37, 96, 204);
+        margin: 0 20px;
+      }
+      .delete{
+        color: rgb(189, 27, 27);
+      }
+    }
+  }
+}
+.am-modal-title{
+  font-size: 40px;
+}
+.am-modal-header, .am-modal-body, .am-modal-footer{
+  font-size: 30px !important;
+  min-height: 80px !important;
+  
+}
+.am-modal-transparent{
+  width: 500px !important;
+}
+.am-modal-button{
+  line-height: 100px !important;
+  height: 100px !important;
+}
+.am-modal-button-group-h{
+  height: 50px;
+}

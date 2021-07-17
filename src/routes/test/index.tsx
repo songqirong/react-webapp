@@ -44,7 +44,6 @@ export default class Test extends PureComponent<any, any> {
     //     },
     //   ])
     //   .then(() => {
-    //     console.log("111");
     //     this.mycanvas?.print(this.xtx);
     //   });
   }

@@ -6,7 +6,7 @@ import {
   fetchGetUserCompleteInfo
 } from "@api/user";
 import { socketObj } from '@utils/socket';
-import { GETUSERINFO, LOGIN, REGIST, LOGOUT, GETCOMPLETEINFO } from "./type";
+import { GETUSERINFO, LOGIN, REGIST, LOGOUT, GETCOMPLETEINFO, UPDATEDETAILINFO, UPDATEUSERINFO } from "./type";
 // 获取用户信息
 export const fetchReduxUserInfo = (params: any, fn?: any) => {
   socketObj.connect();
@@ -15,7 +15,7 @@ export const fetchReduxUserInfo = (params: any, fn?: any) => {
       if(res.err_code === 0){
         dispatch({
           type: GETUSERINFO,
-          payload: res,
+          payload: res.userInfo,
         });
         (socketObj.socket as any)._callbacks = {};
         socketObj.listen(res.userInfo._id);
@@ -33,7 +33,7 @@ export const fetchGetDetailInfo = (params: any) => {
     fetchGetUserCompleteInfo(params).then((res) => {
       dispatch({
         type: GETCOMPLETEINFO,
-        payload: res,
+        payload: res.data,
       })
     })
   }
@@ -45,7 +45,6 @@ export const fetchReduxRegist = (data: any, fn?: any) => {
     fetchRegist(data).then((res: any) => {
       dispatch({
         type: REGIST,
-        payload: res,
       });
       fn && fn(res);
     });
@@ -57,8 +56,7 @@ export const fetchReduxLogin = (data: any, fn?: any) => {
   return (dispatch: any) => {
     fetchLogin(data).then((res: any) => {
       dispatch({
-        type: LOGIN,
-        payload: res,
+        type: LOGIN
       });
       fn && fn(res);
     });
@@ -75,5 +73,25 @@ export const fetchReduxLogout = (data: any, fn?: any) => {
       });
       fn && fn(res);
     });
+  };
+};
+
+// 用户更新详细信息
+export const updateReduxDetailInfo = (payload: any) => {
+  return (dispatch: any) => {
+    dispatch({
+      type: UPDATEDETAILINFO,
+      payload
+    })
+  };
+};
+
+// 用户更新登录信息
+export const updateReduxUserInfo = (payload: any) => {
+  return (dispatch: any) => {
+    dispatch({
+      type: UPDATEUSERINFO,
+      payload
+    })
   };
 };

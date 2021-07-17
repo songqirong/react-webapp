@@ -1,21 +1,22 @@
 import { initalState } from "./state";
-import { GETUSERINFO, LOGIN, LOGOUT, REGIST, GETCOMPLETEINFO } from "./type";
+import { GETUSERINFO, LOGIN, LOGOUT, REGIST, GETCOMPLETEINFO, UPDATEDETAILINFO, UPDATEUSERINFO } from "./type";
 export function userInfoReducer(state = initalState, action: any) {
-  const newState = JSON.parse(JSON.stringify(state)); // 防止触发不了更新
   switch (action.type) {
     case LOGIN:
-      return newState;
+      return state;
     case REGIST:
-      return newState;
+      return state;
     case GETUSERINFO:
-      const { userInfo } = action.payload;
-      return { ...newState, userInfo };
+      return { ...state, userInfo: action.payload };
     case GETCOMPLETEINFO:
-      const { data } = action.payload;
-      return { ...newState, completeInfo: data }
+      return { ...state, completeInfo: action.payload };
+    case UPDATEDETAILINFO:
+      return { ...state, completeInfo: action.payload };
+    case UPDATEUSERINFO:
+      return { ...state, userInfo: action.payload };
     case LOGOUT:
       return { ...initalState };
     default:
-      return newState;
+      return state;
   }
 }

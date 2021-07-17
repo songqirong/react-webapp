@@ -13,13 +13,13 @@ const addCustomize = () => (config) => {
 const devServerConfig = () => (config) => {
   return {
     ...config,
-    proxy: {
-      "/api": {
-        target: "https://recruitmentapi.persion.cn",
-        changeOrigin: true,
-        wss: true,
-      },
-    },
+    // proxy: {
+    //   "/api": {
+    //     target: "http://localhost:8095",
+    //     changeOrigin: true,
+    //     wss: true,
+    //   },
+    // },
   };
 };
 module.exports = {

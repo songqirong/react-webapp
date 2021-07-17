@@ -1,6 +1,7 @@
 import React from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { TabBar } from "antd-mobile";
+import { fetchReduxScrollTop } from '@redux/home/actions';
 import { withRouter } from "react-router-dom";
 import { IInitalStateType } from "@/redux/user/type";
 import { IInitalStateType as HomeType } from "@/redux/home/type";
@@ -11,7 +12,8 @@ const MyTabBar: React.FC<any> = (props) => {
   const hideIdx = user_type === "SEEKERS" ? 1 : 0;
   const messageUnreadTotal = message_user_list.reduce((total: number, item: IUserObj) => {
     return total += item.count;
-  }, 0)
+  }, 0);
+  const dispatch = useDispatch();
   const tabs = [
     {
       title: '职位',
@@ -67,7 +69,10 @@ const MyTabBar: React.FC<any> = (props) => {
               badge={item.badge}
               dot={item.dot}
               onPress={() => {
-                props.history.replace(item.key)
+                if(path === '/home'){
+                  dispatch(fetchReduxScrollTop(document.documentElement.querySelector('.scroll-view')?.scrollTop))
+                }
+                props.history.replace(item.key);
               }}
             >
             </TabBar.Item>)

@@ -6,6 +6,7 @@ import { socketObj, clone_deep, findObjIdxFromArr } from '@utils/socket';
 import { IInitalStateType as userType } from '@/redux/user/type';
 import { IInitalStateType as messageType } from '@/redux/message/type';
 import { withRouter } from 'react-router-dom';
+import QueueAnim from 'rc-queue-anim';
 import { emojipedias } from './contant';
 import { fetchUpdateRead } from '@api/socket';
 import { fetchReduxUpdateUserList } from '@redux/message/actions';
@@ -22,7 +23,8 @@ const Chat: React.FC<any> = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    conEle.current.scrollTop = conEle.current.scrollHeight - conEle.current.clientHeight;
+    conEle.current.scrollTo(0, conEle.current.scrollHeight);
+    // conEle.current.scrollTop = conEle.current.scrollHeight - conEle.current.clientHeight;
   }, [message_list])
 
   // 排除组件bug, 需要异步派发action
@@ -38,7 +40,6 @@ const Chat: React.FC<any> = (props) => {
   // 更新已读
   const updateRead = async(cb: () => void) => {
     const idx = findObjIdxFromArr(message_user_list, { belong_user_id: _id, user_id: chat_id } )
-    console.log(idx, 'idx');
     if(message_user_list[idx].count > 0){
       const res: any = await fetchUpdateRead({ chat_id });
       if(res.err_code === 0){
@@ -51,7 +52,7 @@ const Chat: React.FC<any> = (props) => {
   }
 
   // 生成聊天列表
-  const generateEle = () => <>{ message_list[chat_id]?.sort((a, b) => a.create_time - b.create_time).map(item => {
+  const generateEle = () => <>{ message_list[chat_id]?.sort((a, b) => a.create_time - b.create_time).map((item, index) => {
     const isMe: boolean = _id === item.from_user_id; // 判断是谁发出的消息
     return <Item key={item._id} wrap multipleLine={true} thumb={isMe ? null : avatar} extra={isMe ? <div className="am-list-thumb"><img src={user_avatar} /></div>  : null} className={ isMe ? 'chat-me' : 'chat-you' } > <div className="arrow_box">{item.content}</div> </Item>
   })} </>
@@ -76,7 +77,6 @@ const Chat: React.FC<any> = (props) => {
 
   // 选择表情后填入
   const selectEmoji = (_el: any) => {
-    // console.log(_el)
     iptEle.current.value += _el.text
   }
 
@@ -88,14 +88,13 @@ const Chat: React.FC<any> = (props) => {
   // 返回上一页
   const goBack = () => {
     updateRead(() => {props.history.goBack();});
-    
   }
 
   const emojiEle = <Grid data={emojis} isCarousel onClick={selectEmoji} carouselMaxRow={4} columnNum={8} />
 
   return (
     <div className="chat-container">
-      <NavBar content={nickname} type="left" callback={goBack} />
+      <NavBar content={nickname} leftType="left" leftCallback={goBack} />
       <div className="chat-content" ref={conEle} onClick={closeShow}>
         <List>
           { generateEle() }

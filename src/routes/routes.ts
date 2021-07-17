@@ -7,13 +7,15 @@ const _loadable = (fn: () => Promise<any>) =>
     delay: 200,
   });
 export const RegisterOrLoginComponent = _loadable(() => import("./register-or-login"));
-export const HomeComponent = _loadable(() => import("./home"));
+export const UpdateComponent = _loadable(() => import("./update"));
 export const TestComponent = _loadable(() => import("./test"));
+export const UpteComponent = _loadable(() => import("./update"));
 export const MyComponent = _loadable(() => import("./my"));
 export const MessageComponent = _loadable(() => import("./message"));
 export const IndexComponent = _loadable(() => import("./index"));
 export const ChatComponent = _loadable(() => import("./chat"));
 export const CompleteInfoComponent = _loadable(() => import("./complete-info"));
+export const JobCardComponent = _loadable(() => import("./job-card"));
 const routes = [
   {
     id: 1,
@@ -48,7 +50,17 @@ const routes = [
   {
     id: 7,
     path: "/my",
-    component: MyComponent
+    component: MyComponent,
+  },
+  {
+    id: 8,
+    path: "/update",
+    component: UpdateComponent,
+  },
+  {
+    id: 9,
+    path: "/job-card",
+    component: JobCardComponent,
   }
 ];
 export default routes;

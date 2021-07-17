@@ -1,6 +1,7 @@
 import cookie from "js-cookie";
 const BUBBLE = require("@/assets/bubble.png").default;
-export function qs_parse(url: string = location.search) {
+export function qs_parse(url: string = location.href) {
+  url = url.slice(url.indexOf('?') + 1);
   url = url.replace(/#.*/, "");
   const obj: Record<string, any> = {};
   url.split("&").forEach((item) => {

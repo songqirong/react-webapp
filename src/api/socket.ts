@@ -18,11 +18,11 @@ export function fetchGetUserList(params: any) {
 }
 
 // 获取聊天列表 { page, limit }
-export function fetchUpdateRead(params: { chat_id: string }) {
+export function fetchUpdateRead(data: { chat_id: string }) {
   return axios({
     url: "/message/updateMessageList",
-    method: "put",
-    params,
+    method: "patch",
+    data,
   });
 }
 

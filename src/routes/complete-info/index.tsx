@@ -5,7 +5,7 @@ import { fetchCompleteMessage } from "@api/user";
 import { bindActionCreators } from "redux";
 import { fetchReduxUserInfo } from "@/redux/user/actions";
 import { IStoreType } from "@redux/type";
-import AvatarSelect from "./components/avatar-select";
+import { AvatarSelect, BossBox } from './components';
 import { Button, Toast } from "antd-mobile";
 import "./index.scss";
 import { qs_parse } from "@/utils";
@@ -28,12 +28,7 @@ const CompleteInfo: React.FC<any> = (props) => {
   }, [user]);
   const generate_input_dom = () => {
     return isBoss ? (
-      <>
-        <InputItem name="招聘职位" refEle={RECRUITMENTJOB} type="text" />
-        <InputItem name="公司名称" refEle={COMPANYNAME} type="text" />
-        <InputItem name="职位薪资" refEle={RECRUITMENTSALARY} type="text" />
-        <InputItem name="职位要求" refEle={RECRUITMENTREQUEST} type="text" />
-      </>
+      <BossBox jobRef={RECRUITMENTJOB} nameRef={COMPANYNAME} salaryRef={RECRUITMENTSALARY} requestRef={RECRUITMENTREQUEST}  />
     ) : (
       <>
         <InputItem name="求职岗位" refEle={APPLYJOB} type="text" />
@@ -66,6 +61,8 @@ const CompleteInfo: React.FC<any> = (props) => {
         return Toast.info("请填写职位薪资");
       } else if (!recruitment_request) {
         return Toast.info("请填写职位要求");
+      } else if(!recruitment_salary.match(/^[1~9][0~9]*$/)){
+        return Toast.info('请输入纯数值的薪资，不包含小数')
       }
     } else {
       if (!apply_job) {
@@ -79,7 +76,7 @@ const CompleteInfo: React.FC<any> = (props) => {
           recruitment_job,
           company_name,
           user_avatar,
-          recruitment_salary,
+          recruitment_salary: Number(recruitment_salary),
           recruitment_request,
         }
       : { user_avatar, apply_job, personal_introduction };
@@ -89,6 +86,8 @@ const CompleteInfo: React.FC<any> = (props) => {
         Toast.success(res.msg, 2, () => {
           location.href = from || '/'
         })
+      } else if(res.err_code === 'CONFLICT_BEHAVIOR'){
+        props.history.push('/home');
       }
     });
   };

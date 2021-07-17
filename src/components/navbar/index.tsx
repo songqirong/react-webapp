@@ -3,15 +3,18 @@ import React, { FC } from "react";
 import "./index.scss";
 type IProps = {
   content: string;
-  type?: string;
-  callback?: () => void;
+  leftType?: string;
+  leftCallback?: () => void;
+  rightType?: string;
+  rightCallback?: () => void;
 };
 const NavBarComponent: FC<IProps> = (props) => {
-  const { content, type, callback } = props;
+  const { content, leftType, leftCallback, rightCallback, rightType } = props;
   return (
     <div className="navBar">
-      { type && <Icon type={type} onClick={callback}/> }
+      { leftType && <Icon type={leftType} onClick={leftCallback} className="left" /> }
       <span>{content}</span>
+      { rightType && <Icon type={rightType} onClick={rightCallback} className="right" />  }
     </div>
   );
 };

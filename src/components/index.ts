@@ -5,4 +5,5 @@ import InputItem from "./input-item";
 import MyTabBar from './TabBar';
 import Main from './main';
 import { Message } from "./message";
-export { Loading, ErrorBoundary, NavBar, InputItem, Message, MyTabBar, Main };
+import FixIcon from './fix-icon';
+export { Loading, ErrorBoundary, NavBar, InputItem, Message, MyTabBar, Main, FixIcon };

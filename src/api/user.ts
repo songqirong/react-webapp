@@ -47,8 +47,8 @@ export function fetchGetUserAvatar(params: any) {
 // 完善用户信息 
 export function fetchCompleteMessage(data: any) {
   return axios({
-    url: "/users/insertUserDeatilInfo",
-    method: "put",
+    url: "/users/deatilInfo",
+    method: "post",
     data,
   });
 }
@@ -56,8 +56,44 @@ export function fetchCompleteMessage(data: any) {
 // 获取用户所有的补充信息 {}
 export function fetchGetUserCompleteInfo(params: any) {
   return axios({
-    url: "/users/getDetailInfo",
+    url: "/users/detailInfo",
     method: "get",
     params,
+  });
+}
+
+// 删除用户的补充信息 {}
+export function fetchDeleteUserCompleteInfo(id: string) {
+  return axios({
+    url: `/users/detailInfo/${id}`,
+    method: "delete",
+    params: {},
+  });
+}
+
+// 获取用户所有的补充信息 {}
+export function fetchUpdateUserCompleteInfo(data: any, id: string) {
+  return axios({
+    url: `/users/detailInfo/${id}`,
+    method: "patch",
+    data,
+  });
+}
+
+// 获取用户所有的补充信息 {}
+export function fetchInsertUserCompleteInfo(data: any) {
+  return axios({
+    url: "/users/insertDetailInfo",
+    method: "post",
+    data,
+  });
+}
+
+// 获取用户所有的补充信息 {}
+export function fetchUpdateAvatar(data: any) {
+  return axios({
+    url: "/users//updateAvatar",
+    method: "patch",
+    data,
   });
 }

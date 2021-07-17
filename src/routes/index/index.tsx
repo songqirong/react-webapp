@@ -12,7 +12,7 @@ import { fetchGetList } from '@/api/home';
 import './index.scss';
 
 const Index: React.FC = (props: any) => {
-  const { user: { userInfo }, message, home: { total, list } }: { user: IInitalStateType, message: MessageType, home: HomeType } = useSelector((store: any) => store);
+  const { user: { userInfo }, message, home: { total, list, scrollTop } }: { user: IInitalStateType, message: MessageType, home: HomeType } = useSelector((store: any) => store);
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(5);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -24,6 +24,10 @@ const Index: React.FC = (props: any) => {
     if(page === 1 && list.length> 0) return;
     fetchList({page, limit});
   }, [page]);
+
+  useEffect(() => {
+    listRef.current.getInnerViewNode().parentNode.scrollTop = scrollTop
+  }, [scrollTop])
 
   const fetchList = async(params: any) => {
     try {
@@ -40,7 +44,7 @@ const Index: React.FC = (props: any) => {
   }
 
   const MyBody: React.FC<any> = (props) => {
-    const { children, user_type } = props
+    const { children } = props
     return (
         <div className="index-content am-list-body" >
           { children }
@@ -149,6 +153,7 @@ const Index: React.FC = (props: any) => {
         pageSize={5}
         renderBodyComponent={() => <MyBody />}
         className="scroll-view"
+        onEndReachedThreshold={100}
       />
     </div>
   )

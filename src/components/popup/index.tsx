@@ -40,7 +40,6 @@ export class Notices extends React.Component<null, NoticeState> {
         if (!msg) {
           return false;
         }
-        console.log(msg);
         if (typeof msg === "string") {
           this.setState({ notice_show: true, msg: msg });
         }

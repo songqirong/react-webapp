@@ -1,8 +1,10 @@
 .index-container{
   min-height: 100vh;
   .index-content{
-    background-color: #fff;
+    background-color: #F5F5F9;
     .card{
+      background-color: white;
+      border-radius: 30px;
       .title{
         display: flex;
         padding: 10px;
@@ -41,10 +43,10 @@
       }
     }
     .separator{
-      background-color: #F5F5F9;
+      // background-color: #F5F5F9;
       height: 16px;
-      border-top: 1px solid #ECECED;
-      border-bottom: 1px solid #ECECED;
+      // border-top: 1px solid #ECECED;
+      // border-bottom: 1px solid #ECECED;
     }
   }
 }

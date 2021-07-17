@@ -58,7 +58,6 @@ class Socket{
             return;
         }
       }
-      console.log(res, 'res')
     })
     this.socket.on('completeInfo', (res) => {
       if(res.err_code === 0){
@@ -72,7 +71,6 @@ class Socket{
             return;
         }
       }
-      console.log(res, 'res')
     })
   }
 }

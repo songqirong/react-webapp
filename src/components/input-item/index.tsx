@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, memo } from "react";
 import "./index.scss";
 import cx from "classnames";
 import { IProps } from "./type";
@@ -64,4 +64,4 @@ const InputItem: FC<IProps> = (props) => {
   };
   return renderHtml();
 };
-export default InputItem;
+export default memo(InputItem);
