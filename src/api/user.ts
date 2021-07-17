@@ -47,7 +47,7 @@ export function fetchGetUserAvatar(params: any) {
 // 完善用户信息 
 export function fetchCompleteMessage(data: any) {
   return axios({
-    url: "/users/deatilInfo",
+    url: "/users/detailInfo",
     method: "post",
     data,
   });
