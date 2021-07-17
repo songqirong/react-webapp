@@ -92,7 +92,7 @@ const CompleteInfo: React.FC<any> = (props) => {
     });
   };
   return (
-    <section className="register-container">
+    <section className="completeInfo-container">
       <NavBar content={isBoss ? "老板信息完善" : "大神信息完善"} />
       <AvatarSelect
         user_avatar={user_avatar}

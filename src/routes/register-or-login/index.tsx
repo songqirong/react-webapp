@@ -3,7 +3,6 @@ import { List, WingBlank, WhiteSpace, Button, Toast } from "antd-mobile";
 import { NavBar, InputItem, Message } from "@components/index";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchGetUserInfo } from "@api/user";
 import { check_phone, fun_to_promise, qs_parse } from "@/utils";
 import { fetchReduxRegist, fetchReduxLogin } from "@/redux/user/actions";
 import "./index.scss";

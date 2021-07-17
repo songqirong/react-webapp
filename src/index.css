@@ -29,3 +29,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.am-toast-text{
+  padding: 20px !important;
+}
+.am-toast-text>svg{
+  position: inherit;
+  margin: 0;
+}
