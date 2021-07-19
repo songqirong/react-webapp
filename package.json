@@ -35,7 +35,8 @@
     "start": "PORT=3030 react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "bash deploy.sh"
   },
   "eslintConfig": {
     "extends": [
