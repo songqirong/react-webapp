@@ -37,6 +37,10 @@ code {
   position: inherit;
   margin: 0;
 }
-.am-toast-text-info{
-  font-size: 30px;
+.am-toast-text-info, .am-modal-button{
+  font-size: 30px !important;
+}
+.am-modal-button{
+  line-height: 100px !important;
+  height: 100px !important;
 }

@@ -24,11 +24,14 @@ const devServerConfig = () => (config) => {
 };
 module.exports = {
   webpack: override(
+    // 按需引入antd-nobile
     fixBabelImports("import", {
       libraryName: "antd-mobile",
       style: "css",
     }),
+    // 自动转换（px => rem）
     addPostcssPlugins([require("postcss-px2rem")({ remUnit: 75 })]),
+    // 起别名
     addWebpackAlias({
       ["@"]: resolve(__dirname, "src"),
       ["src"]: resolve(__dirname, "src"),
