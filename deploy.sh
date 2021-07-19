@@ -7,7 +7,5 @@ git push
 
 # build
 npm run build 
-# 压缩文件
-zip build.zip build
-# 删除文件
-rm -rf build
+# 压缩文件并删除源文件夹
+zip -rm build.zip build
