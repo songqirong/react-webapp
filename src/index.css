@@ -44,3 +44,6 @@ code {
   line-height: 100px !important;
   height: 100px !important;
 }
+.am-modal-content{
+  padding-top: 70px !important;
+}
