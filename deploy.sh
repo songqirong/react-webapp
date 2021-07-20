@@ -5,7 +5,7 @@ git checkout tsconfig.json
 
 # 推到远程
 git add .
-git commit -m "调整样式"
+git commit -m $1
 git push
 
 # build
@@ -14,3 +14,4 @@ npm run build
 git checkout tsconfig.json
 # 压缩文件并删除源文件夹
 zip -rm build.zip build
+
