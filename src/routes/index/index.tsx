@@ -12,7 +12,7 @@ import { fetchGetList } from '@/api/home';
 import './index.scss';
 
 const Index: React.FC = (props: any) => {
-  const { user: { userInfo }, message, home: { total, list, scrollTop } }: { user: IInitalStateType, message: MessageType, home: HomeType } = useSelector((store: any) => store);
+  const { user: { userInfo, completeInfo }, home: { total, list, scrollTop } }: { user: IInitalStateType, home: HomeType } = useSelector((store: any) => store);
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(5);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -79,6 +79,9 @@ const Index: React.FC = (props: any) => {
   // 跳转到聊天界面
   const jumpToChat = (id: string, to_user_avatar: string, to_user_nickname: string) => {
     const { _id: from_user_id, user_avatar: from_user_avatar, nickname: from_user_nickname } = userInfo;
+    if(completeInfo.length === 0){
+      return Toast.info('请先完善个人信息～');
+    }
     const content = userInfo.user_type === 'BOSS' ? '我对你有兴趣，能看看简历吗？' : '我对贵公司发布的职位有兴趣，能聊聊吗？';
     socketObj.send({from_user_id, from_user_avatar, to_user_id: id, content, to_user_avatar, to_user_nickname, from_user_nickname })
     props.history.push({

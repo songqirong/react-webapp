@@ -46,6 +46,38 @@ export default class Test extends PureComponent<any, any> {
     //   .then(() => {
     //     this.mycanvas?.print(this.xtx);
     //   });
+    const arr = [
+        {id: 1, name: '部门1', pid: 0},
+        {id: 2, name: '部门2', pid: 1},
+        {id: 3, name: '部门3', pid: 1},
+        {id: 4, name: '部门4', pid: 3},
+        {id: 5, name: '部门5', pid: 4},
+    ];
+
+    // const fun1 = () => {
+    //   const list: any[] = [];
+    //   const arrToObj: any = {};
+    //   arr.forEach((item: any) => {
+    //     item.children = [];
+    //     arrToObj[item.id] = item;
+    //     if(item.pid === 0) list.push(item);
+    //   });
+    //   arr.forEach((item: any) => {
+    //     if(arrToObj[item.pid]){
+    //       arrToObj[item.pid].children.push(item);
+    //     }
+    //   })
+    //   console.log(list)
+    // };
+    // fun1();
+    type IArr = {
+      id: number;
+      name: string;
+      pid: number;
+    };
+
+    const arrToTree: (arr: any[], pid: number) => any = (arr, pid) => arr.filter(item => item.pid === pid ).map(item => ({ ...item, children: arrToTree(arr, item.id)}))
+    console.log(arrToTree(arr, 0));
   }
   // 将图片绘制到canvas
   get_canvas = () => {
