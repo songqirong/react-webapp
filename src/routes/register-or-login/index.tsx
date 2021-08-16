@@ -81,7 +81,7 @@ const Regist: React.FC<any> = (props) => {
   };
   return (
     <section className="register-container">
-      <NavBar content="失联招聘" />
+      <NavBar content="桔止招聘" />
       <div className="img">
         <img src={LOGO} alt="" />
       </div>
