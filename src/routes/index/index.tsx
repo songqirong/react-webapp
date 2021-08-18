@@ -57,7 +57,7 @@ const Index: React.FC = (props: any) => {
     if(isLoading || finish) return;
     if(total > list.length){
       setIsLoading(true);
-      setPage(page + 1);
+      setPage(Math.floor(list.length / 5) + 1);
     } else {
       setFinish(true);
       Toast.info('已经没有更多了～', 1);
