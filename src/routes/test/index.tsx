@@ -1,10 +1,10 @@
-import React, { PureComponent } from "react";
-import "./index.scss";
-import { Button } from "antd-mobile";
-import { Bubble } from "@utils/index";
-import { qs_parse, MyCanvas } from "src/utils";
+import React, { PureComponent } from 'react';
+import './index.scss';
+import { Button } from 'antd-mobile';
+import { Bubble } from '@utils/index';
+import { qs_parse, MyCanvas } from 'src/utils';
 // const ROSE = require("@/assets/rose2.jpeg").default;
-const LONG = require("@/assets/dragon.jpg").default;
+const LONG = require('@/assets/dragon.jpg').default;
 export default class Test extends PureComponent<any, any> {
   private canvas: HTMLCanvasElement | undefined;
   private ctx: CanvasRenderingContext2D | null | undefined;
@@ -15,7 +15,7 @@ export default class Test extends PureComponent<any, any> {
   constructor(props: any) {
     super(props);
     this.state = {
-      phone: "15727531836",
+      phone: '15727531836',
       imgload: false,
     };
   }
@@ -47,11 +47,11 @@ export default class Test extends PureComponent<any, any> {
     //     this.mycanvas?.print(this.xtx);
     //   });
     const arr = [
-        {id: 1, name: '部门1', pid: 0},
-        {id: 2, name: '部门2', pid: 1},
-        {id: 3, name: '部门3', pid: 1},
-        {id: 4, name: '部门4', pid: 3},
-        {id: 5, name: '部门5', pid: 4},
+      { id: 1, name: '部门1', pid: 0 },
+      { id: 2, name: '部门2', pid: 1 },
+      { id: 3, name: '部门3', pid: 1 },
+      { id: 4, name: '部门4', pid: 3 },
+      { id: 5, name: '部门5', pid: 4 },
     ];
 
     // const fun1 = () => {
@@ -76,7 +76,7 @@ export default class Test extends PureComponent<any, any> {
       pid: number;
     };
 
-    const arrToTree: (arr: any[], pid: number) => any = (arr, pid) => arr.filter(item => item.pid === pid ).map(item => ({ ...item, children: arrToTree(arr, item.id)}))
+    const arrToTree: (arr: any[], pid: number) => any = (arr, pid) => arr.filter((item) => item.pid === pid ).map((item) => ({ ...item, children: arrToTree(arr, item.id) }));
     console.log(arrToTree(arr, 0));
   }
   // 将图片绘制到canvas
@@ -86,7 +86,7 @@ export default class Test extends PureComponent<any, any> {
       if (!!this.canvas) {
         this.canvas.width = this.img.width;
         this.canvas.height = this.img.height;
-        this.ctx = this.canvas?.getContext("2d");
+        this.ctx = this.canvas?.getContext('2d');
         this.ctx?.drawImage(this.img, 0, 0);
         this.get_canvas_data();
       }
@@ -104,10 +104,10 @@ export default class Test extends PureComponent<any, any> {
         0,
         0,
         this.img.width,
-        this.img.height
+        this.img.height,
       ).data;
       // this.ctx.fillText("canvas生成图片测试", 100, 300);
-      this.ctx.fillStyle = "#fff";
+      this.ctx.fillStyle = '#fff';
       // this.ctx.font = "50px";
       // const imgSrc = this.canvas?.toDataURL("image/png");
       // this.xtx.src = imgSrc;
@@ -120,8 +120,8 @@ export default class Test extends PureComponent<any, any> {
             g = imageData[position + 1],
             b = imageData[position + 2];
 
-          if (r + g + b == 0) {
-            this.ctx.fillStyle = "pink";
+          if (r + g + b === 0) {
+            this.ctx.fillStyle = 'pink';
             this.ctx.fillRect(w, h, 4, 4);
           }
         }
@@ -142,15 +142,15 @@ export default class Test extends PureComponent<any, any> {
     const { phone } = this.state;
     return (
       <section className="register-container">
-         <div className="canvas">
+        <div className="canvas">
           <span>{phone}</span>
           <Button onClick={this.downImage}>呵呵</Button>
         </div>
         {/* <canvas ref={(node: any) => (this.canvas = node)}></canvas> */}
-         <div
+        <div
           ref={(node: any) => (this.divEle = node)}
           className="container"
-        ></div> 
+        ></div>
         <div className="wrap">
           <input type="checkbox" id="input" />
           <div className="text">
@@ -159,9 +159,9 @@ export default class Test extends PureComponent<any, any> {
             正如我们前面提到的那样，当一个元素浮动之后当一个元素浮动之后，它会被移出正常的文档流，然后向左或者向右平移，一直平移直到碰到了所处的容器的边框，或者碰到另外一个浮动的元素。
           </div>
         </div>
-       {/* <img ref={(node: any) => (this.xtx = node)} crossOrigin="anonymous" /> */}
+        {/* <img ref={(node: any) => (this.xtx = node)} crossOrigin="anonymous" /> */}
       </section>
-      
+
     );
   }
 }

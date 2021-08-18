@@ -1,5 +1,5 @@
-import { initalState } from "./state";
-import { GETUSERINFO, LOGIN, LOGOUT, REGIST, GETCOMPLETEINFO, UPDATEDETAILINFO, UPDATEUSERINFO } from "./type";
+import { initalState } from './state';
+import { GETUSERINFO, LOGIN, LOGOUT, REGIST, GETCOMPLETEINFO, UPDATEDETAILINFO, UPDATEUSERINFO } from './type';
 export function userInfoReducer(state = initalState, action: any) {
   switch (action.type) {
     case LOGIN:

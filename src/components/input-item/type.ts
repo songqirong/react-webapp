@@ -7,7 +7,7 @@ export type IProps = {
   placeHolder?: string;
   name: string;
   className?: string;
-  type: "checkbox" | "text" | "password";
+  type: 'checkbox' | 'text' | 'password';
   data?: IData[];
   value?: string;
   onChange?: (val: any) => any;

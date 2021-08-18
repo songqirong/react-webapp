@@ -82,3 +82,10 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 }
 3、 在tsconfig.json中注入
 "extends": "./paths.json",
+
+## 请使用
+node --version 
+14.14.1
+
+## 开启pre-commit
+请先运行npm run prelint;

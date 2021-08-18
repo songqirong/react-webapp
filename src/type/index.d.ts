@@ -1,6 +1,6 @@
 declare const ClipboardItem: any;
 declare type sendMsg = {
-  from_user_id: string; 
+  from_user_id: string;
   from_user_avatar: string;
   to_user_id: string;
   content: string;

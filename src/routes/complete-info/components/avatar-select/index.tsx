@@ -1,7 +1,7 @@
-import { Grid } from "antd-mobile";
-import React, { useEffect, useState } from "react";
-import { fetchGetUserAvatar } from "@api/user";
-import "./index.scss";
+import { Grid } from 'antd-mobile';
+import React, { useEffect, useState } from 'react';
+import { fetchGetUserAvatar } from '@api/user';
+import './index.scss';
 type IData = {
   create_time: number;
   name: string;
@@ -19,7 +19,7 @@ const AvatarSelect: React.FC<IProps> = (props) => {
     get_avatar();
   }, []);
   // 获取头像列表
-  const get_avatar = async () => {
+  const get_avatar = async() => {
     try {
       const res = await fetchGetUserAvatar({});
       setData(res.data);
@@ -32,16 +32,14 @@ const AvatarSelect: React.FC<IProps> = (props) => {
     set_user_avatar(item.avatar_url);
   };
   // 生成头部渲染节点
-  const generate_dom: any = () => {
-    return user_avatar ? (
-      <>
-        <span>您已选择头像:</span>
-        <img src={user_avatar} alt="selectAvatar" />
-      </>
-    ) : (
-      <span>请选择您的头像:</span>
-    );
-  };
+  const generate_dom: any = () => (user_avatar ? (
+    <>
+      <span>您已选择头像:</span>
+      <img src={user_avatar} alt="selectAvatar" />
+    </>
+  ) : (
+    <span>请选择您的头像:</span>
+  ));
   return (
     <section className="avatar-container">
       <div className="sub-title">{generate_dom()}</div>

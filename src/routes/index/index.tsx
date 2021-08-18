@@ -21,19 +21,19 @@ const Index: React.FC = (props: any) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(page === 1 && list.length> 0) return;
-    fetchList({page, limit});
+    if(page === 1 && list.length > 0) return;
+    fetchList({ page, limit });
   }, [page]);
 
   useEffect(() => {
-    listRef.current.getInnerViewNode().parentNode.scrollTop = scrollTop
-  }, [scrollTop])
+    listRef.current.getInnerViewNode().parentNode.scrollTop = scrollTop;
+  }, [scrollTop]);
 
   const fetchList = async(params: any) => {
     try {
       const res: any = await fetchGetList(params);
       if(res.err_code === 0){
-        dispatch(fetchReduxList({ total: res.data.total, list:  page === 1 ? res.data.list : [ ...list, ...res.data.list ]}));
+        dispatch(fetchReduxList({ total: res.data.total, list: page === 1 ? res.data.list : [ ...list, ...res.data.list ] }));
       }
       setIsLoading(false);
       setRefreshing(false);
@@ -41,27 +41,27 @@ const Index: React.FC = (props: any) => {
       setIsLoading(false);
       setRefreshing(false);
     }
-  }
+  };
 
   const MyBody: React.FC<any> = (props) => {
-    const { children } = props
+    const { children } = props;
     return (
-        <div className="index-content am-list-body" >
-          { children }
-        </div>
-    )
-  }
+      <div className="index-content am-list-body" >
+        { children }
+      </div>
+    );
+  };
   // 触底
   const Reached = (event: any) => {
     if(isLoading) return;
     if(total > list.length){
       setIsLoading(true);
-      setPage(page+1);
+      setPage(page + 1);
     } else {
-      Toast.info('已经没有更多了～', 1)
+      Toast.info('已经没有更多了～', 1);
     }
-  }
-  
+  };
+
   // 下拉刷新
   const refresh = async() => {
     if(isLoading) return;
@@ -69,12 +69,12 @@ const Index: React.FC = (props: any) => {
     dispatch(updateReduxIsNew(false));
     // 获取第一页的数据
     setPage(1);
-    fetchList({page: 1, limit})
-  }
+    fetchList({ page: 1, limit });
+  };
 
   const listConver = () => new ListView.DataSource({
     rowHasChanged: (row1: any, row2: any) => row1 !== row2,
-  })
+  });
 
   // 跳转到聊天界面
   const jumpToChat = (id: string, to_user_avatar: string, to_user_nickname: string) => {
@@ -83,42 +83,42 @@ const Index: React.FC = (props: any) => {
       return Toast.info('请先完善个人信息～');
     }
     const content = userInfo.user_type === 'BOSS' ? '我对你有兴趣，能看看简历吗？' : '我对贵公司发布的职位有兴趣，能聊聊吗？';
-    socketObj.send({from_user_id, from_user_avatar, to_user_id: id, content, to_user_avatar, to_user_nickname, from_user_nickname })
+    socketObj.send({ from_user_id, from_user_avatar, to_user_id: id, content, to_user_avatar, to_user_nickname, from_user_nickname });
     props.history.push({
       pathname: '/chat',
-      state: {chat_id: id, nickname: to_user_nickname, avatar: to_user_avatar}
+      state: { chat_id: id, nickname: to_user_nickname, avatar: to_user_avatar },
     });
-  }
+  };
 
 
 
 
   const row = (rowData: any, sectionID: any, rowID: any) => {
     const data = JSON.parse(rowData);
-    const isBoss = userInfo.user_type === 'BOSS'
+    const isBoss = userInfo.user_type === 'BOSS';
     return (
       <div key={data._id}
-           className="card"
-           onClick={() => { jumpToChat(data.user_id, data.avatar_url, data.nickname) }}
+        className="card"
+        onClick={() => { jumpToChat(data.user_id, data.avatar_url, data.nickname); }}
       >
         <div className="title">
           <div className="avatar" style={{ backgroundImage: `url(${data.avatar_url})` }}></div>
           <div className="username">{ data.nickname }</div>
         </div>
         <div className="content">
-           {
-             isBoss ? <>
+          {
+            isBoss ? <>
               <div className="content-desc">意向职位：{ data.apply_job }</div>
               <div className="content-desc">个人介绍：{ data.personal_introduction }</div>
-             </>
-             :
-             <>
-              <div className="content-desc">招聘职位：{ data.recruitment_job }</div>
-              <div className="content-desc">招聘要求：{ data.recruitment_request }</div>
-              <div className="content-desc">薪资待遇：¥{ data.recruitment_salary }</div>
-              <div className="content-desc">公司名称：{ data.company_name }</div>
-             </>
-           }
+            </>
+              :
+              <>
+                <div className="content-desc">招聘职位：{ data.recruitment_job }</div>
+                <div className="content-desc">招聘要求：{ data.recruitment_request }</div>
+                <div className="content-desc">薪资待遇：¥{ data.recruitment_salary }</div>
+                <div className="content-desc">公司名称：{ data.company_name }</div>
+              </>
+          }
         </div>
       </div>
     );
@@ -144,14 +144,14 @@ const Index: React.FC = (props: any) => {
         renderRow={row}
         renderSeparator={separator}
         pullToRefresh={
-        <PullToRefresh
-          refreshing={refreshing}
-          onRefresh={refresh}
-          direction='down'
-          getScrollContainer={() => null}
-          distanceToRefresh={25}
-          indicator={{}}
-        />}
+          <PullToRefresh
+            refreshing={refreshing}
+            onRefresh={refresh}
+            direction='down'
+            getScrollContainer={() => null}
+            distanceToRefresh={25}
+            indicator={{}}
+          />}
         onEndReached={Reached}
         pageSize={5}
         renderBodyComponent={() => <MyBody />}
@@ -159,6 +159,6 @@ const Index: React.FC = (props: any) => {
         onEndReachedThreshold={100}
       />
     </div>
-  )
-}
-export default withRouter(Index); 
+  );
+};
+export default withRouter(Index);

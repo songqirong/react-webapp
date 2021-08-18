@@ -14,17 +14,17 @@ const Message: React.FC<any> = (props) => {
   const jump_to_chat = (chat_id: string, nickname: string, avatar: string) => {
     props.history.push({
       pathname: '/chat',
-      state: {chat_id, nickname, avatar}
+      state: { chat_id, nickname, avatar },
     });
-  }
+  };
 
-  const generateEle = () => <QueueAnim type="left" delay={200} >{ 
-    message_user_list?.map((item: IUserObj, index) => 
-    <Item key={item._id} extra={ <Badge text={item.count} /> } arrow="horizontal" thumb={item.user_avatar} onClick={() => { jump_to_chat(item.user_id, item.nickname, item.user_avatar) }} >
-      { item.nickname }
-      <Brief>{item.last_content}</Brief>
-    </Item> )
-  } </QueueAnim>
+  const generateEle = () => <QueueAnim type="left" delay={200} >{
+    message_user_list?.map((item: IUserObj, index) =>
+      <Item key={item._id} extra={ <Badge text={item.count} /> } arrow="horizontal" thumb={item.user_avatar} onClick={() => { jump_to_chat(item.user_id, item.nickname, item.user_avatar); }} >
+        { item.nickname }
+        <Brief>{item.last_content}</Brief>
+      </Item> )
+  } </QueueAnim>;
   return (
     <div className="message-container">
       <NavBar content="消息中心" />
@@ -34,6 +34,6 @@ const Message: React.FC<any> = (props) => {
         </List>
       </div>
     </div>
-  )
-}
-export default withRouter(Message); 
+  );
+};
+export default withRouter(Message);

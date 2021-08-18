@@ -1,5 +1,5 @@
-import { initalState } from "./state";
-import { UPDATEMESSAGELIST, UPDATEUSERLIST, CLEARLIST } from "./type";
+import { initalState } from './state';
+import { UPDATEMESSAGELIST, UPDATEUSERLIST, CLEARLIST } from './type';
 export function messageReducer(state = initalState, action: any) {
   switch (action.type) {
     case UPDATEUSERLIST:

@@ -14,10 +14,10 @@ export type IInitalStateType = {
   userInfo: IUserInfo;
   completeInfo: any[];
 };
-export const GETUSERINFO = "get_user_info";
-export const REGIST = "regist";
-export const LOGIN = "login";
-export const LOGOUT = "logout";
+export const GETUSERINFO = 'get_user_info';
+export const REGIST = 'regist';
+export const LOGIN = 'login';
+export const LOGOUT = 'logout';
 export const GETCOMPLETEINFO = 'get_complete_info';
 export const UPDATEDETAILINFO = 'update_detail_info';
 export const UPDATEUSERINFO = 'update_user_info';

@@ -11,7 +11,7 @@ const FixIcon: React.FC<Iprops> = (props) => {
     <div className="fix-icon" onClick={callback} >
       +
     </div>
-  )
-}
+  );
+};
 
 export default memo(FixIcon);

@@ -1,6 +1,6 @@
-import { Icon } from "antd-mobile";
-import React, { FC } from "react";
-import "./index.scss";
+import { Icon } from 'antd-mobile';
+import React, { FC } from 'react';
+import './index.scss';
 type IProps = {
   content: string;
   leftType?: string;
@@ -14,7 +14,7 @@ const NavBarComponent: FC<IProps> = (props) => {
     <div className="navBar">
       { leftType && <Icon type={leftType} onClick={leftCallback} className="left" /> }
       <span>{content}</span>
-      { rightType && <Icon type={rightType} onClick={rightCallback} className="right" />  }
+      { rightType && <Icon type={rightType} onClick={rightCallback} className="right" /> }
     </div>
   );
 };

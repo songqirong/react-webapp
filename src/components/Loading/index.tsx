@@ -1,5 +1,5 @@
-import React, { PureComponent } from "react";
-import "./index.scss";
+import React, { PureComponent } from 'react';
+import './index.scss';
 
 export default class Loading extends PureComponent<any, any> {
   constructor(props: any) {

@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 export default class ErrorBoundary extends React.Component<any, any> {
   constructor(props: any) {
     super(props);
@@ -7,7 +7,7 @@ export default class ErrorBoundary extends React.Component<any, any> {
 
   componentDidCatch(error: any) {
     // Display fallback UI
-    console.log("error", error);
+    console.log('error', error);
     this.setState({ hasError: true });
     // You can also log the error to an error reporting service
     // logErrorToMyService(error, info);

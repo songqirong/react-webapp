@@ -1,9 +1,9 @@
-import axios from "@/utils/http";
+import axios from '@/utils/http';
 // 注册 {username, password, password2 }
 export function fetchRegist(data: any) {
   return axios({
-    url: "/users/regist",
-    method: "POST",
+    url: '/users/regist',
+    method: 'POST',
     data,
   });
 }
@@ -11,8 +11,8 @@ export function fetchRegist(data: any) {
 // 登录 {username, password }
 export function fetchLogin(data: any) {
   return axios({
-    url: "/users/login",
-    method: "POST",
+    url: '/users/login',
+    method: 'POST',
     data,
   });
 }
@@ -20,8 +20,8 @@ export function fetchLogin(data: any) {
 // 退出登录 {}
 export function fetchLogout(data: any) {
   return axios({
-    url: "/users/logout",
-    method: "POST",
+    url: '/users/logout',
+    method: 'POST',
     data,
   });
 }
@@ -29,8 +29,8 @@ export function fetchLogout(data: any) {
 // 获取用户详情 {}
 export function fetchGetUserInfo(params: any) {
   return axios({
-    url: "/users/getUserInfo",
-    method: "get",
+    url: '/users/getUserInfo',
+    method: 'get',
     params,
   });
 }
@@ -38,17 +38,17 @@ export function fetchGetUserInfo(params: any) {
 // 获取默认选择头像 {}
 export function fetchGetUserAvatar(params: any) {
   return axios({
-    url: "/avatars/getAllAvatar",
-    method: "get",
+    url: '/avatars/getAllAvatar',
+    method: 'get',
     params,
   });
 }
 
-// 完善用户信息 
+// 完善用户信息
 export function fetchCompleteMessage(data: any) {
   return axios({
-    url: "/users/detailInfo",
-    method: "post",
+    url: '/users/detailInfo',
+    method: 'post',
     data,
   });
 }
@@ -56,8 +56,8 @@ export function fetchCompleteMessage(data: any) {
 // 获取用户所有的补充信息 {}
 export function fetchGetUserCompleteInfo(params: any) {
   return axios({
-    url: "/users/detailInfo",
-    method: "get",
+    url: '/users/detailInfo',
+    method: 'get',
     params,
   });
 }
@@ -66,7 +66,7 @@ export function fetchGetUserCompleteInfo(params: any) {
 export function fetchDeleteUserCompleteInfo(id: string) {
   return axios({
     url: `/users/detailInfo/${id}`,
-    method: "delete",
+    method: 'delete',
     params: {},
   });
 }
@@ -75,7 +75,7 @@ export function fetchDeleteUserCompleteInfo(id: string) {
 export function fetchUpdateUserCompleteInfo(data: any, id: string) {
   return axios({
     url: `/users/detailInfo/${id}`,
-    method: "patch",
+    method: 'patch',
     data,
   });
 }
@@ -83,8 +83,8 @@ export function fetchUpdateUserCompleteInfo(data: any, id: string) {
 // 获取用户所有的补充信息 {}
 export function fetchInsertUserCompleteInfo(data: any) {
   return axios({
-    url: "/users/insertDetailInfo",
-    method: "post",
+    url: '/users/insertDetailInfo',
+    method: 'post',
     data,
   });
 }
@@ -92,8 +92,8 @@ export function fetchInsertUserCompleteInfo(data: any) {
 // 获取用户所有的补充信息 {}
 export function fetchUpdateAvatar(data: any) {
   return axios({
-    url: "/users//updateAvatar",
-    method: "patch",
+    url: '/users//updateAvatar',
+    method: 'patch',
     data,
   });
 }

@@ -1,7 +1,7 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import cx from "classnames";
-import "./index.scss";
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import cx from 'classnames';
+import './index.scss';
 
 type ToastProps = {
   duration?: number;
@@ -11,7 +11,7 @@ type ToastProps = {
   className?: string;
   content: string;
   style?: any;
-  type: "success" | "warn" | "error";
+  type: 'success' | 'warn' | 'error';
 };
 
 class ToastIn extends React.Component<ToastProps, any> {
@@ -57,7 +57,7 @@ class ToastIn extends React.Component<ToastProps, any> {
   render() {
     const props = this.props;
     const type = props.type;
-    const componentClass = "toast";
+    const componentClass = 'toast';
     const animationDuration = `${props.duration}s`;
     const className = {
       [props.className as any]: !!props.className,
@@ -78,12 +78,12 @@ class ToastIn extends React.Component<ToastProps, any> {
 
 const notice = (
   content: string,
-  type: "success" | "warn" | "error",
+  type: 'success' | 'warn' | 'error',
   duration: number | undefined,
-  onClose?: () => any
+  onClose?: () => any,
 ) => {
-  const div = document.createElement("div");
-  div.className = "message";
+  const div = document.createElement('div');
+  div.className = 'message';
   document.body.appendChild(div);
   const propsCalled = {
     content,
@@ -101,9 +101,9 @@ const notice = (
 export const Message = {
   show(
     content: string,
-    type: "success" | "warn" | "error",
+    type: 'success' | 'warn' | 'error',
     duration?: number,
-    onClose?: () => any
+    onClose?: () => any,
   ) {
     return notice(content, type, duration, onClose);
   },

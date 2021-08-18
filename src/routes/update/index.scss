@@ -1,27 +1,31 @@
-.update-container{
+.update-container {
   width: 100%;
   min-height: 100vh;
   position: relative;
   background-color: white;
-  .input_box{
+
+  .input_box {
     position: absolute;
     left: 0;
     top: 20%;
     width: 100%;
-    .title{
+
+    .title {
       text-align: center;
       font-size: 40px;
       font-weight: bold;
       line-height: 100px;
       height: 100px;
     }
-    .desc{
+
+    .desc {
       text-align: center;
       line-height: 50px;
       font-size: 30px;
       margin-bottom: 20px;
     }
-    &>input{
+
+    & > input {
       width: 75%;
       height: 80px;
       display: block;
@@ -31,7 +35,8 @@
       padding-left: 30px;
       background-color: #f7f7f7;
     }
-    &>button{
+
+    & > button {
       width: 120px;
       height: 120px;
       display: block;
@@ -42,12 +47,14 @@
       background-image: url('./assets/submit.png');
       border: none;
     }
-    .canSubmit{
+
+    .canSubmit {
       background-image: url('./assets/canSubmit.png');
     }
   }
-  .card_box{
-    .btn{
+
+  .card_box {
+    .btn {
       line-height: 80px;
       height: 80px;
       font-size: 40px;
@@ -56,8 +63,9 @@
       margin-top: 10px;
     }
   }
-  .avatar_box{
-    &>button{
+
+  .avatar_box {
+    & > button {
       width: 120px;
       height: 120px;
       display: block;
@@ -68,7 +76,8 @@
       background-image: url('./assets/submit.png');
       border: none;
     }
-    .canSubmit{
+
+    .canSubmit {
       background-image: url('./assets/canSubmit.png');
     }
   }
