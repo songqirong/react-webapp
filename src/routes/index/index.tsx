@@ -12,7 +12,7 @@ import { fetchGetList } from '@/api/home';
 import './index.scss';
 
 const Index: React.FC = (props: any) => {
-  const { user: { userInfo, completeInfo }, home: { total, list, scrollTop } }: { user: IInitalStateType, home: HomeType } = useSelector((store: any) => store);
+  const { user: { userInfo, completeInfo }, home: { total, list, scrollTop, isNew } }: { user: IInitalStateType, home: HomeType } = useSelector((store: any) => store);
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(5);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -69,7 +69,7 @@ const Index: React.FC = (props: any) => {
     if(isLoading) return;
     setFinish(false); // 置为为未加载完
     setRefreshing(true); // 开始加载
-    dispatch(updateReduxIsNew(false));
+    isNew && dispatch(updateReduxIsNew(false));
     // 第一页直接请求
     if(page === 1){
       fetchList({ page: 1, limit });
