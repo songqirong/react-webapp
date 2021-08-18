@@ -17,11 +17,12 @@ const Index: React.FC = (props: any) => {
   const [limit, setLimit] = useState<number>(5);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [refreshing, setRefreshing] = useState<boolean>(false);
+  const [finish, setFinish] = useState<boolean>(false); // 用来标识数据是否加载完成
   const listRef = useRef<any>();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(page === 1 && list.length > 0) return;
+    if(page === 1 && refreshing === false && list.length > 0) return;
     fetchList({ page, limit });
   }, [page]);
 
@@ -53,11 +54,12 @@ const Index: React.FC = (props: any) => {
   };
   // 触底
   const Reached = (event: any) => {
-    if(isLoading) return;
+    if(isLoading || finish) return;
     if(total > list.length){
       setIsLoading(true);
       setPage(page + 1);
     } else {
+      setFinish(true);
       Toast.info('已经没有更多了～', 1);
     }
   };
@@ -65,11 +67,18 @@ const Index: React.FC = (props: any) => {
   // 下拉刷新
   const refresh = async() => {
     if(isLoading) return;
+    setFinish(false); // 置为为未加载完
     setRefreshing(true); // 开始加载
     dispatch(updateReduxIsNew(false));
-    // 获取第一页的数据
-    setPage(1);
-    fetchList({ page: 1, limit });
+    // 第一页直接请求
+    if(page === 1){
+      fetchList({ page: 1, limit });
+    } else {
+      // 获取第一页的数据
+      setPage(1);
+    }
+
+    // fetchList({ page: 1, limit });
   };
 
   const listConver = () => new ListView.DataSource({

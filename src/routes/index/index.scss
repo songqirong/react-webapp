@@ -1,18 +1,22 @@
-.index-container{
+.index-container {
   min-height: 100vh;
-  .index-content{
+
+  .index-content {
     background-color: #F5F5F9;
-    .card{
+
+    .card {
       background-color: white;
       border-radius: 30px;
-      .title{
+
+      .title {
         display: flex;
         padding: 10px;
         justify-content: space-between;
         width: 90%;
         margin: 0 auto;
         border-bottom: 1px solid #ddd;
-        .avatar{
+
+        .avatar {
           height: 100px;
           width: 100px;
           background-position: center center;
@@ -21,17 +25,20 @@
           border-radius: 50px;
           border: 1px solid #ccc;
         }
-        .username{
+
+        .username {
           height: 100px;
           line-height: 100px;
           color: #888;
           font-size: 36px;
         }
       }
-      .content{
+
+      .content {
         display: border-box;
         padding: 30px;
-        .content-desc{
+
+        .content-desc {
           margin-bottom: 16px;
           color: #000;
           font-size: 32px;
@@ -42,7 +49,8 @@
         }
       }
     }
-    .separator{
+
+    .separator {
       // background-color: #F5F5F9;
       height: 16px;
       // border-top: 1px solid #ECECED;
@@ -50,24 +58,30 @@
     }
   }
 }
-.am-list-header{
+
+.am-list-header {
   padding: 0 !important;
 }
-.am-pull-to-refresh-indicator{
+
+.am-pull-to-refresh-indicator {
   height: 50px;
   margin-top: -50px !important;
+  font-size: 30px;
 }
-.footer{
+
+.footer {
   text-align: center;
   font-size: 30px;
 }
-.am-icon-loading{
+
+.am-icon-loading {
   left: 50%;
   margin-left: -20px;
   width: 40px;
   height: 40px;
   top: -20px;
 }
-.scroll-view{
+
+.scroll-view {
   height: calc(100vh - 180px);
 }
