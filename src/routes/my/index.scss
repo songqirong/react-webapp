@@ -1,41 +1,55 @@
-.my-container{
+.my-container {
   height: 100vh;
-  .my-content{
+
+  .my-content {
     background-color: #f7f7f7;
     height: calc(100vh - 180px);
     overflow-y: auto;
-    .am-result-pic{
+
+    .am-result-pic {
       display: block;
       margin: 0 auto !important;
       width: 120px;
       height: 120px;
     }
-    .avatar{
+
+    .avatar {
       width: 120px;
       height: 120px;
       border-radius: 50%;
     }
-    .am-result-title{
+
+    .am-result-title {
       font-size: 36px;
       margin-top: 60px;
     }
+
+    .am-result-message {
+      font-size: 28px;
+    }
+
     .sub-title {
       color: #888;
       font-size: 28px;
       padding: 60px 0 36px 0;
       margin-left: 30px;
     }
-    .am-list-content{
+
+    .am-list-content {
       font-size: 30px !important;
       line-height: 50px !important;
     }
-    .am-list-extra{
+
+    .am-list-extra {
       font-size: 30px !important;
     }
-    .am-list-header{
+
+    .am-list-header {
       padding: 30px !important;
+      font-size: 28px;
     }
-    .btn{
+
+    .btn {
       line-height: 80px;
       height: 80px;
       font-size: 40px;
@@ -45,16 +59,18 @@
     }
   }
 }
-.am-modal-title{
+
+.am-modal-title {
   font-size: 40px;
 }
-.am-modal-header, .am-modal-body, .am-modal-footer{
+
+.am-modal-header,
+.am-modal-body,
+.am-modal-footer {
   font-size: 30px !important;
   min-height: 80px !important;
-  
 }
-.am-modal-transparent{
+
+.am-modal-transparent {
   width: 500px !important;
 }
-
-
