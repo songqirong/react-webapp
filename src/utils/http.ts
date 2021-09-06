@@ -6,6 +6,9 @@ const instance = axios.create({
   baseURL,
   timeout: 7000,
   withCredentials: true,
+  validateStatus(status){
+    return status < 400 && status >= 200;
+  },
 });
 instance.interceptors.request.use(
   function(config) {
