@@ -11,7 +11,7 @@ const {
 const addCustomize = () => (config) => {
   // 更改输出文件
   paths.appBuild = join(dirname(paths.appBuild), 'dist');
-  config.output.path = join(dirname(config.output.path), 'dist');
+  // config.output.path = join(dirname(config.output.path), 'dist');
   return config;
 };
 const devServerConfig = () => (config) => ({

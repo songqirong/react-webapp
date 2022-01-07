@@ -1,2 +1,2 @@
-require("@/utils/index");
-declare module "rc-form";
+require('@/utils/index');
+declare module 'rc-form';
