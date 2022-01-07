@@ -1,5 +1,4 @@
-const { resolve, join, dirname } = require('path');
-const paths = require('react-scripts/config/paths');
+const { resolve, join } = require('path');
 const {
   override,
   fixBabelImports,
@@ -8,7 +7,10 @@ const {
   addPostcssPlugins,
   addWebpackAlias,
 } = require('customize-cra');
-const addCustomize = () => (config) => config;
+const addCustomize = () => (config) => {
+  config.output.path = join(__dirname, 'dist');
+  return config;
+};
 const devServerConfig = () => (config) => ({
   ...config,
   // proxy: {
