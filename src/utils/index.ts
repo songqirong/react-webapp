@@ -98,7 +98,7 @@ export class MyCanvas {
       const a = document.createElement('a');
       a.download = 'image.png';
       a.style.display = 'none';
-      a.href = URL.createObjectURL(blob);
+      a.href = URL.createObjectURL(blob as any);
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -203,7 +203,7 @@ export class MyCanvas1 {
       const a = document.createElement('a');
       a.download = 'image.png';
       a.style.display = 'none';
-      a.href = URL.createObjectURL(blob);
+      a.href = URL.createObjectURL(blob as any);
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
@@ -219,7 +219,7 @@ export class MyCanvas1 {
         await (navigator.clipboard as any).write([
           new ClipboardItem({
             [(blob as any).type]: blob,
-          }),
+          } as any),
         ]);
         resolve(true);
       });
