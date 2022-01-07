@@ -1,4 +1,5 @@
 const { resolve, join } = require('path');
+const paths = require('react-scripts/config/paths');
 const {
   override,
   fixBabelImports,
@@ -8,6 +9,8 @@ const {
   addWebpackAlias,
 } = require('customize-cra');
 const addCustomize = () => (config) => {
+  // 更改输出文件
+  paths.appBuild = join(__dirname, 'dist');
   config.output.path = join(__dirname, 'dist');
   return config;
 };
