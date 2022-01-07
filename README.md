@@ -89,3 +89,13 @@ node --version
 
 ## 开启pre-commit
 请先运行npm run prelint;
+
+#更改打包目录
+.env.production
+BUILD_PATH=dist
+const addCustomize = () => (config) => {
+  // 更改输出文件
+  paths.appBuild = join(dirname(paths.appBuild), 'dist');
+  // config.output.path = join(dirname(config.output.path), 'dist');
+  return config;
+};
