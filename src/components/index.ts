@@ -1,4 +1,4 @@
-import Loading from './loading';
+import Loading from './Loading';
 import ErrorBoundary from './error-boundary';
 import NavBar from './navbar';
 import InputItem from './input-item';

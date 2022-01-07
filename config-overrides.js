@@ -10,8 +10,9 @@ const {
 } = require('customize-cra');
 const addCustomize = () => (config) => {
   // 更改输出文件
-  paths.appBuild = join(__dirname, 'dist');
-  config.output.path = join(__dirname, 'dist');
+  const dist_path = join(__dirname, 'dist');
+  paths.appBuild = dist_path;
+  config.output.path = dist_path;
   return config;
 };
 const devServerConfig = () => (config) => ({
