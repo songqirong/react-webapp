@@ -1,5 +1,5 @@
 import loadable from 'react-loadable';
-import { LoadingComponentFn } from '@/components/loading';
+import { LoadingComponentFn } from '@/components/Loading';
 const _loadable = (fn: () => Promise<any>) =>
   loadable({
     loader: fn,
